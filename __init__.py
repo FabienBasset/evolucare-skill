@@ -12,7 +12,6 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from mycroft.skills.context import adds_context, removes_context
 
-from DPIClass import DPI
 
 class EvolucareSkill(MycroftSkill):
     def __init__(self):
