@@ -12,15 +12,12 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from mycroft.skills.context import adds_context, removes_context
 
+from DPIClass import DPI
 
 class EvolucareSkill(MycroftSkill):
     def __init__(self):
         super(EvolucareSkill, self).__init__(name="EvolucareSkill")
         self.last_tension = 0
-        #self.dico_path = "dictionnary.xml"
-        #self.dico = LoadDico(self.dico_path)
-
-
 
 
     @intent_handler(IntentBuilder("TensionMesure")
@@ -31,7 +28,6 @@ class EvolucareSkill(MycroftSkill):
         self.speak_dialog('tension.mesure.protocol')
         
         
-
 
     @intent_handler(IntentBuilder("TensionQuestion")
                     .require("tension"))
@@ -51,8 +47,6 @@ class EvolucareSkill(MycroftSkill):
     
     
     
-    
-    
     @intent_handler(IntentBuilder("TensionProtocolIntent")
                     .require("acceptation")
                     .require("TensionContext")
@@ -62,9 +56,6 @@ class EvolucareSkill(MycroftSkill):
     def handle_tension_question_accept(self, message):
         self.speak_dialog('tension.mesure.protocol')
         
-         
-         
-         
          
          
     @intent_handler(IntentBuilder("TensionCalculIntent")
@@ -81,14 +72,15 @@ class EvolucareSkill(MycroftSkill):
 
 
 
-
-
     @removes_context('TensionProtocol')   
     def TensionCalulate(self):
         self.speak_dialog('tension.calcul')
         # TO DO : calculate and return tension
         self.last_tension = 0
         self.speak_dialog("tension.response", data={"tension": self.last_tension} )
+
+
+
 
 
     #@intent_handler(IntentBuilder(""))
